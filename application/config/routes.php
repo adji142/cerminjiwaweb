@@ -53,5 +53,11 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// ============================== API ==============================
+$route['APIpost'] = 'API/API_post/read';
+$route['APIpostplaylist'] = 'API/API_post/ReadDaftarPutar';
+$route['APIlastlineplaylist'] = 'API/API_post/LastLineNumb';
+$route['APIAddPlaylist'] = 'API/API_post/AddPlaylist';
+// ============================== API ==============================
 
 $route['post'] = 'Home/Post';

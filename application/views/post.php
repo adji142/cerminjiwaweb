@@ -214,7 +214,7 @@
 				  } else {
 				    // alert('Your query count: ' + data.custom_fields);
 				    $('#vidurl').val(data.custom_fields.masterasseturl);
-				    $('#thumburl').val(data.thumbnail);
+				    $('#thumburl').val(data.poster);
 				    $('#judul').val(data.name);
 				    $('#Desc').val(data.description);
 				    $('#ref').val(data.long_description);
