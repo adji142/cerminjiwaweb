@@ -42,5 +42,6 @@
         }
       }
     ?>
+    <li><a href="<?= base_url(); ?>apk/cerminjiwa-beta.apk"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
   </ul>
 </div>
