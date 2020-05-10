@@ -58,6 +58,20 @@ $route['APIpost'] = 'API/API_post/read';
 $route['APIpostplaylist'] = 'API/API_post/ReadDaftarPutar';
 $route['APIlastlineplaylist'] = 'API/API_post/LastLineNumb';
 $route['APIAddPlaylist'] = 'API/API_post/AddPlaylist';
+$route['APIRemovePlaylist'] = 'API/API_post/RemoveDaftarPutar';
+$route['APIAbout'] = 'API/API_post/ReadAbout';
+
+// API AUTH
+$route['APIAUTHUname'] = 'API/API_auth/FindUserName';
+$route['APIAUTHEmail'] = 'API/API_auth/FindEmail';
+$route['APIAUTHReg'] = 'API/API_auth/RegisterUser';
+$route['APIAUTHLogin'] = 'API/API_auth/Log_Pro';
+$route['APIAUTHChangePass'] = 'API/API_auth/ChangePassword';
+
+// API Message
+$route['APIMessageInbox'] = 'API/API_Message/SendInbox';
+$route['APIShowMessage'] = 'API/API_Message/ReadMessage';
 // ============================== API ==============================
 
 $route['post'] = 'Home/Post';
+$route['about'] = 'Home/About';

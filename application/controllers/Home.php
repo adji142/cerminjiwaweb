@@ -35,5 +35,8 @@ class home extends CI_Controller {
 	{
 		$this->load->view('post');
 	}
-
+	public function About()
+	{
+		$this->load->view('about');
+	}
 }

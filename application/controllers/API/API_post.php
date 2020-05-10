@@ -49,6 +49,19 @@ class API_post extends CI_Controller {
 
 		echo json_encode($rs->result());
 	}
+	public function ReadAbout()
+	{
+		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
+		$query = "SELECT * FROM tabout where id = 1";
+
+		$rs = $this->db->query($query);
+
+		$data['success'] = true;
+		$data['count'] = $rs->num_rows();
+		$data['data'] = $rs->result();
+
+		echo json_encode($rs->result());
+	}
 	public function LastLineNumb()
 	{
 		$data = array('count'=>0);
@@ -105,11 +118,30 @@ class API_post extends CI_Controller {
 		$query = "SELECT a.*,b.id playlistid FROM post a inner join playlist b on a.id = b.postid where a.active = 1 and concat(b.DeviceID,b.UserID) ='".$id.$kodeuser."'";
 
 		$rs = $this->db->query($query);
-
+		// var_dump($query);
 		$data['success'] = true;
 		$data['count'] = $rs->num_rows();
 		$data['data'] = $rs->result();
 
 		echo json_encode($rs->result());
+	}
+	public function RemoveDaftarPutar()
+	{
+		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
+		$id = $this->input->post('id');
+
+		$where = array(
+			'id'	=> $id
+		);
+
+		$rs = $this->ModelsExecuteMaster->DeleteData($where,'playlist');
+
+		if ($rs) {
+			$data['success'] = true;
+		}
+		else{
+			$data['success'] = false;
+		}
+		echo json_encode($data);
 	}
 }

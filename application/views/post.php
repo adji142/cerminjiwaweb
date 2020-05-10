@@ -65,6 +65,12 @@
 	    			</div>
 	    		</div>
 	    		<div class="control-group">
+    			<label class="control-label">Alternative Video URL</label>
+    			<div class="controls">
+    				<input type="text" name="altvideo" id="altvideo" required="" placeholder="Alternative Video URL">
+    			</div>
+	    		</div>
+	    		<div class="control-group">
 	    			<label class="control-label">Judul</label>
 	    			<div class="controls">
 	    				<input type="text" name="judul" id="judul" required="" placeholder="Judul">
@@ -246,6 +252,7 @@
 				    $('#Desc').val(v.Description);
 				    $('#ref').val(v.Reflection);
 				    $('#source').val(v.Source).change();
+				    $('#altvideo').val(v.AltVideo);
 
 					$('#modal_').modal('show');
 		          });
