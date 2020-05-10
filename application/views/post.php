@@ -304,8 +304,8 @@
 		                allowEditing:false
 		            },
 		            {
-		                dataField: "Liked",
-		                caption: "Like",
+		                dataField: "Viewed",
+		                caption: "View",
 		                allowEditing:false
 		            },
 		            {

@@ -29,7 +29,7 @@ class c_post extends CI_Controller {
 	{
 		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
 
-		$query = "SELECT * FROM post where active = 1";
+		$query = "SELECT *,(SELECT COUNT(*) FROM tempview b WHERE b.PostID = a.id) Viewed,(SELECT COUNT(*) FROM tempshare b WHERE b.PostID = a.id)Shared FROM post a WHERE active = 1";
 
 		$rs = $this->db->query($query);
 

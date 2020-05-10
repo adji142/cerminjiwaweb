@@ -39,4 +39,12 @@ class home extends CI_Controller {
 	{
 		$this->load->view('about');
 	}
+	public function Users()
+	{
+		$this->load->view('users');
+	}
+	public function Chats()
+	{
+		$this->load->view('chats');
+	}
 }

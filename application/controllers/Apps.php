@@ -91,4 +91,22 @@ class Apps extends CI_Controller {
 
 		echo json_encode($data);
 	}
+	public function UserList()
+	{
+		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
+
+		$query = "select * from users";
+
+		$rs = $this->db->query($query);
+
+		if ($rs->num_rows() > 0) {
+			$data['success'] = true;
+			$data['data'] = $rs->result();
+		}
+		echo json_encode($data);
+	}
+	public function UserChat()
+	{
+		# code...
+	}
 }

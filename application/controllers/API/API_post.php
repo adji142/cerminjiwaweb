@@ -144,4 +144,27 @@ class API_post extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+	public function LogView()
+	{
+		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
+
+		$deviceid = $this->input->post('deviceid');
+		$PostID = $this->input->post('PostID');
+		$table = $this->input->post('table');
+
+		$param = array(
+			'deviceid' 		=> $deviceid,
+			'PostID'		=> $PostID,
+			'viewDate'		=> date("Y-m-d h:i:sa")
+		);
+		$rs = $this->ModelsExecuteMaster->ExecInsert($param,$table);
+		if ($rs) {
+			$data['success'] = true;
+		}
+		else{
+			$data['success'] = false;
+			$data['message'] = 'Error';
+		}
+		echo json_encode($data);
+	}
 }

@@ -11,7 +11,7 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 10/05/2020 15:11:18
+ Date: 10/05/2020 23:48:19
 */
 
 SET NAMES utf8mb4;
@@ -29,14 +29,15 @@ CREATE TABLE `inbox`  (
   `Message` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `Read` bit(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of inbox
 -- ----------------------------
-INSERT INTO `inbox` VALUES (1, 'adji142', 'ecc4a28f60e61b76', '2020-05-10 09:05:58', ' saya mau bertanya', b'0');
-INSERT INTO `inbox` VALUES (2, 'adji142', 'ecc4a28f60e61b76', '2020-05-10 09:06:45', 'saya bertanya lagi', b'0');
-INSERT INTO `inbox` VALUES (3, 'adji142', 'ecc4a28f60e61b76', '2020-05-10 10:08:59', 'Saya Membalas', b'0');
+INSERT INTO `inbox` VALUES (1, 'adji142', 'ecc4a28f60e61b76', '2020-05-10 11:45:07', 'hai saya bertanya yaa', b'1');
+INSERT INTO `inbox` VALUES (2, 'adji142', 'ecc4a28f60e61b76', '2020-05-10 11:46:16', 'trimakasih', b'1');
+INSERT INTO `inbox` VALUES (3, 'adji142', 'ecc4a28f60e61b76', '2020-05-10 11:46:21', 'saya spam yaa', b'1');
+INSERT INTO `inbox` VALUES (4, 'adji142', 'ecc4a28f60e61b76', '2020-05-10 11:46:24', 'gapapa kan ?', b'1');
 
 -- ----------------------------
 -- Table structure for outbox
@@ -51,12 +52,16 @@ CREATE TABLE `outbox`  (
   `Read` bit(1) NOT NULL,
   `ReplyBy` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of outbox
 -- ----------------------------
-INSERT INTO `outbox` VALUES (1, 'adji142', '123', '2020-05-10 09:08:06', 'Saya balas', b'0', 'Tampan');
+INSERT INTO `outbox` VALUES (1, 'adji142', 'XX', '2020-05-10 11:45:33', 'iyaa saya akan jawab', b'1', 'admin');
+INSERT INTO `outbox` VALUES (2, 'adji142', 'XX', '2020-05-10 11:46:42', 'ohh iya silahkan', b'1', 'admin');
+INSERT INTO `outbox` VALUES (3, 'adji142', 'XX', '2020-05-10 11:46:47', 'saya juga spam', b'1', 'admin');
+INSERT INTO `outbox` VALUES (4, 'adji142', 'XX', '2020-05-10 11:47:15', 'tambah 1 fungsi clear', b'1', 'admin');
+INSERT INTO `outbox` VALUES (5, 'adji142', 'XX', '2020-05-10 11:47:21', 'okee work', b'1', 'admin');
 
 -- ----------------------------
 -- Table structure for permission
@@ -81,9 +86,9 @@ CREATE TABLE `permission`  (
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES (1, 'User List', NULL, 'icon-qrcode', '0', b'0', b'0', 1, b'1', NULL, NULL, NULL);
+INSERT INTO `permission` VALUES (1, 'User List', 'users', 'icon-qrcode', '0', b'0', b'0', 1, b'1', NULL, NULL, NULL);
 INSERT INTO `permission` VALUES (2, 'Post', 'post', 'icon-copy', '0', b'0', b'0', 2, b'1', NULL, NULL, NULL);
-INSERT INTO `permission` VALUES (3, 'Feedback User', NULL, 'icon-comments-alt', '0', b'0', b'0', 3, b'1', NULL, NULL, NULL);
+INSERT INTO `permission` VALUES (3, 'Feedback User', 'chat', 'icon-comments-alt', '0', b'0', b'0', 3, b'1', NULL, NULL, NULL);
 INSERT INTO `permission` VALUES (4, 'Setting', 'about', 'icon-cog', '0', b'0', b'0', 4, b'1', NULL, NULL, NULL);
 
 -- ----------------------------
@@ -239,6 +244,46 @@ CREATE TABLE `tabout`  (
 INSERT INTO `tabout` VALUES (1, 'CERMINJIWA adalah situs web yang berisikan kumpulan video-video pendek yang mencerminkan kehidupan manusia sehari hari. Share bagikan respon dan bagikan pengalamanmu disetiap topik pertanyaan diskusi video tersebut.', 'https://www.youtube.com/channel/UCfUABd3mfKf4-bsGZBnJHzA', 'https://www.instagram.com/cerminj/', 'https://twitter.com/CerminjiwaC', 'https://web.facebook.com/cermin.jiwa.3194', 'https://www.linkedin.com/in/cerminj-jiwa-8951b6192/', 'https://cerminjiwalove.tumblr.com/');
 INSERT INTO `tabout` VALUES (2, 'CERMINJIWA adalah situs web yang berisikan kumpulan video-video pendek yang mencerminkan kehidupan manusia sehari hari. Share bagikan respon dan bagikan pengalamanmu disetiap topik pertanyaan diskusi video tersebut. 2', 'https://www.youtube.com/channel/UCfUABd3mfKf4-bsGZBnJHzA', 'https://www.instagram.com/cerminj/', 'https://twitter.com/CerminjiwaC', 'https://web.facebook.com/cermin.jiwa.3194', 'https://www.linkedin.com/in/cerminj-jiwa-8951b6192/', 'https://cerminjiwalove.tumblr.com/');
 INSERT INTO `tabout` VALUES (3, 'CERMINJIWA adalah situs web yang berisikan kumpulan video-video pendek yang mencerminkan kehidupan manusia sehari hari. Share bagikan respon dan bagikan pengalamanmu disetiap topik pertanyaan diskusi video tersebut. 2', 'https://www.youtube.com/channel/UCfUABd3mfKf4-bsGZBnJHzA', 'https://www.instagram.com/cerminj/', 'https://twitter.com/CerminjiwaC', 'https://web.facebook.com/cermin.jiwa.3194', 'https://www.linkedin.com/in/cerminj-jiwa-8951b6192/', 'https://cerminjiwalove.tumblr.com/');
+
+-- ----------------------------
+-- Table structure for tempshare
+-- ----------------------------
+DROP TABLE IF EXISTS `tempshare`;
+CREATE TABLE `tempshare`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deviceid` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `viewDate` datetime(0) NOT NULL,
+  `PostID` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tempshare
+-- ----------------------------
+INSERT INTO `tempshare` VALUES (1, 'ecc4a28f60e61b76', '2020-05-10 05:17:12', 1);
+
+-- ----------------------------
+-- Table structure for tempview
+-- ----------------------------
+DROP TABLE IF EXISTS `tempview`;
+CREATE TABLE `tempview`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `deviceid` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `viewDate` datetime(0) NOT NULL,
+  `PostID` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tempview
+-- ----------------------------
+INSERT INTO `tempview` VALUES (1, '', '2020-05-10 05:13:15', 1);
+INSERT INTO `tempview` VALUES (2, 'ecc4a28f60e61b76', '2020-05-10 05:13:33', 1);
+INSERT INTO `tempview` VALUES (3, 'ecc4a28f60e61b76', '2020-05-10 05:13:40', 6);
+INSERT INTO `tempview` VALUES (4, 'ecc4a28f60e61b76', '2020-05-10 05:13:46', 24);
+INSERT INTO `tempview` VALUES (5, 'ecc4a28f60e61b76', '2020-05-10 05:17:05', 1);
+INSERT INTO `tempview` VALUES (6, 'ecc4a28f60e61b76', '2020-05-10 05:24:47', 1);
+INSERT INTO `tempview` VALUES (7, 'ecc4a28f60e61b76', '2020-05-10 05:25:11', 1);
 
 -- ----------------------------
 -- Table structure for userrole
