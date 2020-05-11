@@ -127,7 +127,7 @@
 
 	        $.ajax({
 	          type: "post",
-	          url: "<?=base_url()?>c_post/Read",
+	          url: "<?=base_url()?>C_post/Read",
 	          data: {where_field:where_field},
 	          dataType: "json",
 	          success: function (response) {
