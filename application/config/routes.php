@@ -58,9 +58,10 @@ $route['APIpost'] = 'API/API_post/read';
 $route['APIpostplaylist'] = 'API/API_post/ReadDaftarPutar';
 $route['APIlastlineplaylist'] = 'API/API_post/LastLineNumb';
 $route['APIAddPlaylist'] = 'API/API_post/AddPlaylist';
-$route['APIRemovePlaylist'] = 'API/API_post/RemoveDaftarPutar';
+// $route['APIRemovePlaylist'] = 'API/API_post/RemoveDaftarPutar';
 $route['APIAbout'] = 'API/API_post/ReadAbout';
 $route['APILog'] = 'API/API_post/LogView';
+$route['APIVideo'] = 'API/API_post/GetVideoStream';
 
 // API AUTH
 $route['APIAUTHUname'] = 'API/API_auth/FindUserName';
@@ -74,6 +75,14 @@ $route['APIMessageInbox'] = 'API/API_Message/SendInbox';
 $route['APIShowMessage'] = 'API/API_Message/ReadMessage';
 $route['APICountMesssage'] = 'API/API_Message/ReadCountMessage';
 $route['APIUpdateFlag'] = 'API/API_Message/UpdateFlagread';
+
+// API Playlist
+$route['APIAddPlaylistHeader'] = 'API/API_Playlist/AddPlaylistHeader';
+$route['APIAddPlaylistDetail'] = 'API/API_Playlist/AddPlaylistDetail';
+$route['APIShowPlaylistHeader'] = 'API/API_Playlist/ShowPlaylistHeader';
+$route['APIShowPlaylistDetail'] = 'API/API_Playlist/ShowPlaylistDetail';
+$route['APIAddPlaylistMulti'] = 'API/API_Playlist/MultiappendPlaylist';
+$route['APIRemovePlaylist'] = 'API/API_Playlist/RemovePlaylist';
 // ============================== API ==============================
 
 $route['post'] = 'Home/Post';

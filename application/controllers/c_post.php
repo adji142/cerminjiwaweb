@@ -51,6 +51,7 @@ class C_post extends CI_Controller {
 		$ref		= $this->input->post('ref');
 		$source		= $this->input->post('source');
 		$altvideo	= $this->input->post('altvideo');
+		$PostLink	= $this->input->post('PostLink');
 
 		$id  		= $this->input->post('id');
 		$formtype	= $this->input->post('formtype');
@@ -69,7 +70,8 @@ class C_post extends CI_Controller {
 			'LastUpdatedOn'		=> date("Y-m-d h:i:sa"),
 			'active'			=> 1,
 			'Source'			=> $source,
-			'AltVideo'			=> $altvideo
+			'AltVideo'			=> $altvideo,
+			'PostLink'			=> $PostLink
 		);
 
 		if ($formtype == 'add') {

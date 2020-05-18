@@ -71,6 +71,12 @@
     			</div>
 	    		</div>
 	    		<div class="control-group">
+    			<label class="control-label">Post URL</label>
+    			<div class="controls">
+    				<input type="text" name="PostLink" id="PostLink" required="" placeholder="Post Page">
+    			</div>
+	    		</div>
+	    		<div class="control-group">
 	    			<label class="control-label">Judul</label>
 	    			<div class="controls">
 	    				<input type="text" name="judul" id="judul" required="" placeholder="Judul">
@@ -79,7 +85,7 @@
 	    		<div class="control-group">
 	              <label class="control-label">Description</label>
 	              <div class="controls">
-	                <textarea class="span3" id="Desc" name="Desc" placeholder="Description"></textarea>
+	                <textarea class="span3" id="Desc" name="Desc" placeholder="Description" rows="5"></textarea>
 	              </div>
 	            </div>
 	            <div class="control-group">
@@ -119,7 +125,8 @@
         });
         $(document).ready(function () {
         	// initialize desc
-        	$('.Desc').wysihtml5();
+        	$('#Desc').wysihtml5();
+        	$('#ref').wysihtml5();
 
         	var where_field = '';
         	var where_value = '';
@@ -222,8 +229,8 @@
 				    $('#vidurl').val(data.custom_fields.masterasseturl);
 				    $('#thumburl').val(data.poster);
 				    $('#judul').val(data.name);
-				    $('#Desc').val(data.description);
-				    $('#ref').val(data.long_description);
+				    $('#Desc').data('wysihtml5').editor.setValue(data.description);
+				    $('#ref').data('wysihtml5').editor.setValue(data.long_description);
 				  }
 				});
         });
@@ -249,10 +256,11 @@
 					$('#vidurl').val(v.VideoLink);
 				    $('#thumburl').val(v.Thumb);
 				    $('#judul').val(v.title);
-				    $('#Desc').val(v.Description);
-				    $('#ref').val(v.Reflection);
+				    $('#Desc').data('wysihtml5').editor.setValue(v.Description);
+				    $('#ref').data('wysihtml5').editor.setValue(v.Reflection);
 				    $('#source').val(v.Source).change();
 				    $('#altvideo').val(v.AltVideo);
+				    $('#PostLink').val(v.PostLink);
 
 					$('#modal_').modal('show');
 		          });

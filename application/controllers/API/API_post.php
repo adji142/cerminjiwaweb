@@ -36,9 +36,18 @@ class API_post extends CI_Controller {
 		$UserID = $this->input->post('UserID');
 		$query = "SELECT
 						a.*,CASE WHEN b.id is not null then 1 else 0 end playlist,
-						COALESCE(b.DeviceID,'') DeviceID,COALESCE(b.UserID)UserID 
+						COALESCE(b.DeviceID,'') DeviceID,COALESCE(b.KodeUser)UserID 
 					FROM post a 
-					LEFT JOIN playlist b on a.id = b.postid and concat(b.DeviceID,b.UserID) = '".$DeviceID.$UserID."' 
+					LEFT JOIN (
+						SELECT 
+							DISTINCT
+							a.id,
+							a.DeviceID,
+							a.KodeUser
+						FROM playlistheader a
+						INNER JOIN playlistdetail b on a.id = b.headerid
+						WHERE CONCAT(a.deviceID,a.KodeUser) = '".$DeviceID.$UserID."'
+					)b on a.id = b.id
 		 			where a.active = 1 and Source ='".$source."'";
 
 		$rs = $this->db->query($query);
@@ -166,5 +175,36 @@ class API_post extends CI_Controller {
 			$data['message'] = 'Error';
 		}
 		echo json_encode($data);
+	}
+	public function GetVideoStream()
+	{
+		$videoURL = $this->input->post('AltVid');
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://getvideo.p.rapidapi.com/?url=".$videoURL."",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "GET",
+			CURLOPT_HTTPHEADER => array(
+				"x-rapidapi-host: getvideo.p.rapidapi.com",
+				"x-rapidapi-key: b168fc15c2msh1035122c11f09c2p199e16jsna8d5d3121d0f"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		curl_close($curl);
+
+		if ($err) {
+			echo "cURL Error #:" . $err;
+		} else {
+			echo $response;
+		}
 	}
 }
