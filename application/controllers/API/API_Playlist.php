@@ -140,7 +140,12 @@ class API_Playlist extends CI_Controller {
 		$KodeUser = $this->input->post('KodeUser');
 		$DeviceID = $this->input->post('DeviceID');
 
-		$query = "select * from playlistheader where concat(KodeUser,DeviceID) = '".$KodeUser.$DeviceID."'";
+		if ($KodeUser == "") {
+			$query = "select * from playlistheader where concat(KodeUser,DeviceID) = '".$KodeUser.$DeviceID."'";
+		}
+		else{
+			$query = "select * from playlistheader where KodeUser = '".$KodeUser."'";
+		}
 		$rs = $this->db->query($query);
 
 		if ($rs->num_rows() > 0) {
@@ -236,10 +241,19 @@ class API_Playlist extends CI_Controller {
 		$DeviceID = $this->input->post('DeviceID');
 		$postid = $this->input->post('postid');
 
-		$SQL = "SELECT a.* FROM playlistheader a 
+		if ($KodeUser=="") {
+			$SQL = "SELECT a.* FROM playlistheader a 
 				LEFT JOIN playlistdetail b on a.id = b.headerid
 				where CONCAT(a.KodeUser,a.DeviceID) = '".$KodeUser.$DeviceID."'
 				AND b.PostID = ".$postid.";";
+		}
+		else{
+			$SQL = "SELECT a.* FROM playlistheader a 
+				LEFT JOIN playlistdetail b on a.id = b.headerid
+				where a.KodeUser = '".$KodeUser."'
+				AND b.PostID = ".$postid.";";
+		}
+		
 		$rsCount = $this->db->query($SQL);
 
 		if ($rsCount->num_rows() > 0) {

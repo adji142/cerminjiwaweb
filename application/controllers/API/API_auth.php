@@ -156,7 +156,7 @@ class API_auth extends CI_Controller {
 		$image = $this->input->post('baseimage');
 
 		$temp = base64_decode($image);
-		$link = './storeimage/'.md5($image).'.png';
+		$link = 'storeimage/'.md5($image).'.png';
 		file_put_contents($link, $temp);
 
 		$fulllink = base_url().$link;
