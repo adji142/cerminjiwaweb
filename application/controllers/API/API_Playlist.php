@@ -228,4 +228,24 @@ class API_Playlist extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+	public function FindPlaylist()
+	{
+		$data = array('success' => false ,'message'=>array(),'count'=> 0);
+
+		$KodeUser = $this->input->post('KodeUser');
+		$DeviceID = $this->input->post('DeviceID');
+		$postid = $this->input->post('postid');
+
+		$SQL = "SELECT a.* FROM playlistheader a 
+				LEFT JOIN playlistdetail b on a.id = b.headerid
+				where CONCAT(a.KodeUser,a.DeviceID) = '".$KodeUser.$DeviceID."'
+				AND b.PostID = ".$postid.";";
+		$rsCount = $this->db->query($SQL);
+
+		if ($rsCount->num_rows() > 0) {
+			$data['success'] = true;
+			$data['count'] = $rsCount->num_rows();
+		}
+		echo json_encode($data);
+	}
 }

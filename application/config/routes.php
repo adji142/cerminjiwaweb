@@ -69,6 +69,8 @@ $route['APIAUTHEmail'] = 'API/API_auth/FindEmail';
 $route['APIAUTHReg'] = 'API/API_auth/RegisterUser';
 $route['APIAUTHLogin'] = 'API/API_auth/Log_Pro';
 $route['APIAUTHChangePass'] = 'API/API_auth/ChangePassword';
+$route['APIAUTHChangeImage'] = 'API/API_auth/ChangeImage';
+$route['APIAUTHUserInfo'] = 'API/API_auth/GetUserInfo';
 
 // API Message
 $route['APIMessageInbox'] = 'API/API_Message/SendInbox';
@@ -83,6 +85,7 @@ $route['APIShowPlaylistHeader'] = 'API/API_Playlist/ShowPlaylistHeader';
 $route['APIShowPlaylistDetail'] = 'API/API_Playlist/ShowPlaylistDetail';
 $route['APIAddPlaylistMulti'] = 'API/API_Playlist/MultiappendPlaylist';
 $route['APIRemovePlaylist'] = 'API/API_Playlist/RemovePlaylist';
+$route['APIFindPlaylist'] = 'API/API_Playlist/FindPlaylist';
 // ============================== API ==============================
 
 $route['post'] = 'Home/Post';

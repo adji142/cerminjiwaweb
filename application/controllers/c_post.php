@@ -52,10 +52,11 @@ class C_post extends CI_Controller {
 		$source		= $this->input->post('source');
 		$altvideo	= $this->input->post('altvideo');
 		$PostLink	= $this->input->post('PostLink');
+		$Folder		= $this->input->post('Folder');
 
 		$id  		= $this->input->post('id');
 		$formtype	= $this->input->post('formtype');
-		$NamaUser = $this->session->userdata('NamaUser');
+		$NamaUser 	= $this->session->userdata('NamaUser');
 
 		$param = array(
 			'APILink'			=> $api,
@@ -71,7 +72,8 @@ class C_post extends CI_Controller {
 			'active'			=> 1,
 			'Source'			=> $source,
 			'AltVideo'			=> $altvideo,
-			'PostLink'			=> $PostLink
+			'PostLink'			=> $PostLink,
+			'Folder'			=> $Folder
 		);
 
 		if ($formtype == 'add') {

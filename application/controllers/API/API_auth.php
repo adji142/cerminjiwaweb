@@ -149,4 +149,47 @@ class API_auth extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+	public function ChangeImage()
+	{
+		$data = array('success' => false ,'message'=>array(),'imageurl'=>array());
+		$usr = $this->input->post('username');
+		$image = $this->input->post('baseimage');
+
+		$temp = base64_decode($image);
+		$link = './storeimage/'.md5($image).'.png';
+		file_put_contents($link, $temp);
+
+		$fulllink = base_url().$link;
+
+		$rs = $this->ModelsExecuteMaster->ExecUpdate(array('ImageProfile'=>$fulllink),array('username'=> $usr),'users');
+		if ($rs) {
+			$data['success'] = true;
+			$data['imageurl'] = $fulllink;
+		}
+		else{
+			$data['message'] = 'Gagal Update Password';
+		}
+		echo json_encode($data);
+	}
+	public function GetUserInfo()
+	{
+		$data = array('success' => false ,'message'=>array(),'username'=>'','email'=>'','phone'=>'','ImageProfile'=>'');
+		$usr = $this->input->post('username');
+
+		$sql = "SELECT username,email,phone,ImageProfile FROM users where username = '".$usr."'";
+		$rs = $this->db->query($sql);
+
+		if ($rs->num_rows() > 0) {
+			$data['success'] = true;
+			$data['username'] = $rs->row()->username;
+			$data['email'] = $rs->row()->email;
+			$data['phone'] = $rs->row()->phone;
+			$data['ImageProfile'] = $rs->row()->ImageProfile;
+		}
+		else{
+			$data['success'] = false;
+			$data['message'] = 'Fail to generate data';
+		}
+		echo json_encode($data);
+	}
 }

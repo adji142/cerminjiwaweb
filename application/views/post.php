@@ -103,6 +103,16 @@
 	                </select>
 	              </div>
 	            </div>
+	            <div class="control-group">
+	              <label class="control-label">Folder</label>
+	              <div class="controls">
+	                <select id="Folder" name="Folder" disabled="">
+	                	<option value="1">Mujizat Isa</option>
+	                	<option value="2">Pengajaran Isa</option>
+	                	<option value="3">Kehidupan Isa</option>
+	                </select>
+	              </div>
+	            </div>
 	            <button class="btn btn-primary" id="btn_Save">Save</button>
 	    	</form>
 	    </div>
@@ -185,16 +195,17 @@
         $('.close').click(function() {
         	location.reload();
         });
+        $('#source').change(function () {
+        	var source = $('#source').val();
+        	console.log(source);
+        	if (source == 'SI') {
+        		$('#Folder').prop('disabled',false);
+        	}
+        	else{
+        		$('#Folder').prop('disabled',true);	
+        	}
+        });
         $('#api').change(function() {
-        // 	$.ajax({
-        // 		type    :'get',
-		      //   url     : $('#api').val(),
-		      //   dataType: 'json',
-		      //   success : function (response) {
-		      //     // $('#vidurl').text(response.custom);
-		      //     // console.log(response['custom_fields']);
-		      //   }
-		      // });
 		      var getJSON = function(url, callback) {
 				    var xhr = new XMLHttpRequest();
 				    xhr.open('GET', url, true);
@@ -250,6 +261,7 @@
 					// $('#jns').val(v.Tipe).change();
 					$('#target').val(v.target).change();
 					$('#id').val(v.id).change();
+					$('#Folder').val(v.Folder).change();
 					$('#formtype').val("edit");
 
 					$('#api').val(v.APILink);
