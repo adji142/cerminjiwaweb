@@ -25,7 +25,7 @@ class C_post extends CI_Controller {
 		$this->load->model('GlobalVar');
 		$this->load->model('Apps_mod');
 	}
-	public function Read()
+	public function Read() 
 	{
 		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
 
