@@ -41,6 +41,9 @@ class C_post extends CI_Controller {
 	}
 	public function add()
 	{
+		ini_set('memory_limit', '32M');
+		ini_set('upload_max_filesize', '200M');
+		ini_set('post_max_size', '300M');
 		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
 
 		$api 		= $this->input->post('api');
@@ -57,6 +60,29 @@ class C_post extends CI_Controller {
 		$id  		= $this->input->post('id');
 		$formtype	= $this->input->post('formtype');
 		$NamaUser 	= $this->session->userdata('NamaUser');
+		// $uservid	= $this->input->post('uservid');
+		// var_dump($uservid);
+		// $file 		= $this->request->getFile('uservid');
+			try {
+				unset($config);
+				$date = date("ymd");
+		        $configVideo['upload_path'] = './localVideo';
+		        $configVideo['max_size'] = '60000';
+		        $configVideo['allowed_types'] = 'mp4';
+		        $configVideo['overwrite'] = FALSE;
+		        $configVideo['remove_spaces'] = TRUE;
+		        $configVideo['file_name'] = $judul;
+
+		        $this->load->library('upload', $configVideo);
+		        $this->upload->initialize($configVideo);
+		        if(!$this->upload->do_upload('uservid')) {
+		            echo $this->upload->display_errors();
+		        }else{
+		            $videoDetails = $this->upload->data();
+		        }	
+			} catch (Exception $e) {
+				echo $e->getMessage();
+			}
 
 		$param = array(
 			'APILink'			=> $api,
@@ -73,7 +99,8 @@ class C_post extends CI_Controller {
 			'Source'			=> $source,
 			'AltVideo'			=> $altvideo,
 			'PostLink'			=> $PostLink,
-			'Folder'			=> $Folder
+			'Folder'			=> $Folder,
+			'OflineVideo'		=> base_url().'/localVideo/'.$judul.'.mp4'
 		);
 
 		if ($formtype == 'add') {

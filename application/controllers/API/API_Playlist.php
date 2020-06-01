@@ -197,11 +197,11 @@ class API_Playlist extends CI_Controller {
 		$data = array('success' => false ,'message'=>array());
 		
 		$mode = $this->input->post("mode");// 1: detail, 2: header detail
-		$iddetail = $this->input->post('iddetail');
+		$postid = $this->input->post('postid');
 		$headerid = $this->input->post('headerid');
 
 		if ($mode == "1") {
-			$rs = $this->ModelsExecuteMaster->DeleteData(array('id'=>$iddetail),'playlistdetail');
+			$rs = $this->ModelsExecuteMaster->DeleteData(array('postid'=>$postid,'headerID'=>$headerid),'playlistdetail');
 			if ($rs) {
 				$query = "select * from playlistdetail where headerID = ".$headerid."";
 				$rsCount = $this->db->query($query);

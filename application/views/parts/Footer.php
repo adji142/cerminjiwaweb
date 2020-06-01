@@ -11,7 +11,7 @@
 <script src="<?php echo base_url();?>Assets/js/matrix.js"></script> <!--end-Footer-part-->
 <script src="<?php echo base_url();?>Assets/js/matrix.dashboard.js"></script> 
 <script src="<?php echo base_url();?>Assets/js/jquery.uniform.js"></script>
-<script src="<?php echo base_url();?>Assets/js/select2.min.js"></script>  <!--end-Footer-part-->
+<!-- <script src="<?php echo base_url();?>Assets/js/select2.min.js"></script>  -->
 <script src="<?php echo base_url();?>Assets/js/jquery.dataTables.min.js"></script>  <!--end-Footer-part-->
 <script src="<?php echo base_url();?>Assets/js/matrix.tables.js"></script>  <!--end-Footer-part-->
 <script src="<?php echo base_url();?>Assets/js/wysihtml5-0.3.0.js"></script> 

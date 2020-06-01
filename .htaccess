@@ -14,3 +14,6 @@
   RewriteRule ^ index.php [QSA,L]
   #RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
+
+php_value upload_max_filesize 300M
+php_value post_max_size 400M

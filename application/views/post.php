@@ -2,7 +2,9 @@
     require_once(APPPATH."views/parts/Header.php");
     require_once(APPPATH."views/parts/Sidebar.php");
     $active = 'daftarmesin';
+
 ?>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<div id="content">
 		<div id="content-header">
 			<div id="breadcrumb"> <a href="<?php echo base_url(); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Post</a> </div>
@@ -42,8 +44,9 @@
 	        	</div>
 	        </h5>
 	    </div>
+	    <!-- enctype='application/json' -->
 	    <div class="modal-body">
-	    	<form class="form-horizontal" enctype='application/json' id="post_">
+	    	<form class="form-horizontal" id="post_">
 	    		<div class="control-group">
 	    			<label class="control-label">Image API Link</label>
 	    			<div class="controls">
@@ -113,6 +116,13 @@
 	                </select>
 	              </div>
 	            </div>
+	            <div class="control-group">
+	              <label class="control-label">Ofline Video</label>
+	              <div class="controls">
+	                <input type="file" name="uservid" id="uservid">
+	              </div>
+	            </div>
+	            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 	            <button class="btn btn-primary" id="btn_Save">Save</button>
 	    	</form>
 	    </div>
@@ -125,14 +135,14 @@
 
 <script type="text/javascript">
 	$(function () {
-		$.ajaxSetup({
-            beforeSend:function(jqXHR, Obj){
-                var value = "; " + document.cookie;
-                var parts = value.split("; csrf_cookie_token=");
-                if(parts.length == 2)
-                Obj.data += '&csrf_token='+parts.pop().split(";").shift();
-            }
-        });
+		// $.ajaxSetup({
+  //           beforeSend:function(jqXHR, Obj){
+  //               var value = "; " + document.cookie;
+  //               var parts = value.split("; csrf_cookie_token=");
+  //               if(parts.length == 2)
+  //               Obj.data += '&csrf_token='+parts.pop().split(";").shift();
+  //           }
+  //       });
         $(document).ready(function () {
         	// initialize desc
         	$('#Desc').wysihtml5();
@@ -156,14 +166,35 @@
         	$('#btn_Save').text('Tunggu Sebentar.....');
 		    $('#btn_Save').attr('disabled',true);
 
-		    e.preventDefault();
-			var me = $(this);
+		    var api = $('#api').val();
+		    var id = $('#id').val();
+		    var formtype = $('#formtype').val();
+		    var vidurl = $('#vidurl').val();
+		    var thumburl = $('#thumburl').val();
+		    var altvideo = $('#altvideo').val();
+		    var PostLink = $('#PostLink').val();
+		    var judul = $('#judul').val();
+		    var Desc = $("#Desc").val();
+		    var ref = $('#ref').val();
+		    var source = $('#source').val();
+		    var Folder = $('#Folder').val();
+		    var uservid = $('#uservid').prop('files')[0];
 
+		    // console.log(uservid);
+		    e.preventDefault();
+			// var me = $(this);
+			// var file_data = $('#uservid').prop('files');
+            var form_data = new FormData(this);
+ 
+            // form_data.append('file', uservid);
+			// api:api,id:id,formtype:formtype,vidurl:vidurl,thumburl:thumburl,altvideo:altvideo,PostLink:PostLink,judul:judul,Desc:Desc,ref:ref,source:source,Folder:Folder,uservid:uservid
 			$.ajax({
 		        type    :'post',
 		        url     : '<?=base_url()?>c_post/add',
-		        data    : me.serialize(),
+		        data    : form_data, //
 		        dataType: 'json',
+		        processData: false,
+				contentType: false,
 		        success : function (response) {
 		          if(response.success == true){
 		            $('#modal_').modal('toggle');
@@ -428,6 +459,20 @@
 
 		    // add dx-toolbar-after
 		    // $('.dx-toolbar-after').append('Tambah Alat untuk di pinjam ');
+		}
+
+		function xxx() {
+			$.ajax({
+	          type: "post",
+	          url: "<?=base_url()?>c_post/find",
+	          data: {'id':id},
+	          dataType: "json",
+	          success: function (response) {
+          		$.each(response.data,function (k,v) {
+          			console.log(v.KelompokUsaha);
+		          });
+	          }
+	        });
 		}
 	});
 </script>
