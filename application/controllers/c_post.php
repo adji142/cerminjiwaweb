@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class c_post extends CI_Controller {
+class C_post extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -25,7 +25,7 @@ class c_post extends CI_Controller {
 		$this->load->model('GlobalVar');
 		$this->load->model('Apps_mod');
 	}
-	public function read()
+	public function Read()
 	{
 		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
 
