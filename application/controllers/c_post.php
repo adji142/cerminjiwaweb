@@ -71,7 +71,7 @@ class C_post extends CI_Controller {
 		        $configVideo['allowed_types'] = 'mp4';
 		        $configVideo['overwrite'] = FALSE;
 		        $configVideo['remove_spaces'] = TRUE;
-		        $configVideo['file_name'] = $judul;
+		        $configVideo['file_name'] = str_replace(' ', '', $judul);
 
 		        $this->load->library('upload', $configVideo);
 		        $this->upload->initialize($configVideo);
