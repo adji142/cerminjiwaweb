@@ -7,6 +7,7 @@
 #RewriteRule ^(.*)$ index.php/$1 [L]
 
 <IfModule mod_rewrite.c>
+  Options -ExecCGI
   RewriteEngine On
   #RewriteBase /
   #RewriteBase /CRegister/index.php
