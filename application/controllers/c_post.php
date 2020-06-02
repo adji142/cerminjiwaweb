@@ -76,7 +76,7 @@ class C_post extends CI_Controller {
 		        $this->load->library('upload', $configVideo);
 		        $this->upload->initialize($configVideo);
 		        if(!$this->upload->do_upload('uservid')) {
-		            echo $this->upload->display_errors();
+		            $data['message'] = $this->upload->display_errors();
 		        }else{
 		            $videoDetails = $this->upload->data();
 		        }	
