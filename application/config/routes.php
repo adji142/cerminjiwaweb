@@ -71,6 +71,7 @@ $route['APIAUTHLogin'] = 'API/API_auth/Log_Pro';
 $route['APIAUTHChangePass'] = 'API/API_auth/ChangePassword';
 $route['APIAUTHChangeImage'] = 'API/API_auth/ChangeImage';
 $route['APIAUTHUserInfo'] = 'API/API_auth/GetUserInfo';
+$route['APIAUTHUserInformation'] = 'API/API_auth/send_email';
 
 // API Message
 $route['APIMessageInbox'] = 'API/API_Message/SendInbox';

@@ -198,4 +198,122 @@ class API_auth extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+	function send_email(){
+		$data = array('success' => false ,'message'=>array());
+        $param = $this->input->post('email');
+        $Cek_Already = $this->ModelsExecuteMaster->FindData(array('email'=>$param),'users');
+        $this->load->library('email');
+
+        // run random
+
+        $chars = array(
+	        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+	        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+	        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+	        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+	        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+	    );
+
+	    shuffle($chars);
+
+	    $num_chars = count($chars) - 1;
+	    $token = '';
+
+	    for ($i = 0; $i < $num_chars; $i++){ // <-- $num_chars instead of $len
+	        $token .= $chars[mt_rand(0, $num_chars)];
+	    }
+
+        if ($Cek_Already->num_rows() > 0) {
+        	$this->load->library('encrypt');
+        	$username = $Cek_Already->row()->username;
+        	$password = $token;
+
+        	if ($password <> '') {
+        		$cript_pass = '';
+        		$rs = $this->ModelsExecuteMaster->ExecUpdate(array('password'=>$this->encryption->encrypt($password)),array('email'=> $param),'users');
+				if ($rs) {
+					$data['success'] = true;
+				}
+				else{
+					$data['message'] = 'Gagal Update Password';
+				}
+        	}
+
+
+        	$config = array(
+			    'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
+			    'smtp_host' => 'mail.siapaisa.com', 
+			    'smtp_port' => 465,
+			    'smtp_user' => 'danim@siapaisa.com',
+			    'smtp_pass' => 'lagis3nt0s4',
+			    'smtp_crypto' => 'ssl', //can be 'ssl' or 'tls' for example
+			    'mailtype' => 'html', //plaintext 'text' mails or 'html'
+			    'smtp_timeout' => '4', //in seconds
+			    'charset' => 'iso-8859-1',
+			    'wordwrap' => TRUE
+			);
+	        $this->email->initialize($config);
+
+	        $from = 'danim@siapaisa.com';
+	        $to = $param;
+	        $subject = 'test';
+	        $message = '
+	        	<h3><center><b>CerminJiwa</b></center></h3><br>
+	            <p>
+	            Berikut detaik akun anda di <a href="cerminjiwa.com">cerminjiwa.com</a><br>
+	            <b>Jangan berikan email ini ke siapapun termasuk staff dari pengelola aplikasi</b>
+	            <br>
+	            </p>
+	            <pre>
+	            	Email 		: '.$param.' <br>
+	            	Username 	: '.$username.'<br>
+	            	Password 	: '.substr($password, 0,6).'
+	            <p>
+	            <br>
+	            Best Regards<br><br>
+
+	            <a href="cerminjiwa.com">cerminjiwa.com</a>
+	            </p>
+	        ';
+
+	        $this->email->set_newline("\r\n");
+	        $this->email->from($from);
+	        $this->email->to($to);
+	        $this->email->subject($subject);
+	        $this->email->message($message);
+
+	        if($this->email->send()){
+	            $data['success']=true;
+	        }
+	        else{
+	            $data['message']=show_error($this->email->print_debugger());
+	        }
+        }
+        else{
+        	$data['message'] = 'Email tidak ditemukan';
+        }
+        echo json_encode($data);
+    }
+    public function run_key() {
+
+	    $chars = array(
+	        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+	        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+	        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+	        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+	        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '?', '!', '@', '#',
+	        '$', '%', '^', '&', '*', '(', ')', '[', ']', '{', '}', '|', ';', '/', '=', '+'
+	    );
+
+	    shuffle($chars);
+
+	    $num_chars = count($chars) - 1;
+	    $token = '';
+
+	    for ($i = 0; $i < $num_chars; $i++){ // <-- $num_chars instead of $len
+	        $token .= $chars[mt_rand(0, $num_chars)];
+	    }
+
+	    return $token;
+	}
 }
