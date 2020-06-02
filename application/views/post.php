@@ -48,6 +48,12 @@
 	    <div class="modal-body">
 	    	<form class="form-horizontal" id="post_">
 	    		<div class="control-group">
+	    			<label class="control-label">Not Referance to API ?</label>
+	    			<div class="controls">
+	    				<input type="checkbox" name="notref" id="notref">
+	    			</div>
+	    		</div>
+	    		<div class="control-group">
 	    			<label class="control-label">Image API Link</label>
 	    			<div class="controls">
 	    				<input type="text" name="api" id="api" required="" placeholder="API Link">
@@ -161,6 +167,23 @@
 	          	bindGrid(response.data);
 	          }
 	        });
+        });
+        $('#notref').change(function () {
+        	// console.log();
+        	if ($('#notref').prop('checked')) {
+        		$('#api').val('-');
+        		$('#api').prop('readonly',true);
+        		$('#vidurl').prop('readonly',false);
+        		$('#thumburl').prop('readonly',false);
+        	}
+        	else{
+        		$('#api').val('');
+        		$('#api').prop('readonly',false);
+        		$('#vidurl').prop('readonly',true);
+        		$('#thumburl').prop('readonly',true);
+        		$('#thumburl').val('');
+        		$('#vidurl').val();
+        	}
         });
         $('#post_').submit(function (e) {
         	$('#btn_Save').text('Tunggu Sebentar.....');

@@ -7,8 +7,6 @@
 #RewriteRule ^(.*)$ index.php/$1 [L]
 
 <IfModule mod_rewrite.c>
-  CheckSpelling On
-  Options -ExecCGI
   RewriteEngine On
   #RewriteBase /
   #RewriteBase /CRegister/index.php
