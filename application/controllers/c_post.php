@@ -81,7 +81,7 @@ class C_post extends CI_Controller {
 		            $videoDetails = $this->upload->data();
 		        }	
 			} catch (Exception $e) {
-				echo $e->getMessage();
+				$data['message'] = $e->getMessage();
 			}
 
 		$param = array(
