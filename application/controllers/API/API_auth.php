@@ -230,7 +230,7 @@ class API_auth extends CI_Controller {
 
         	if ($password <> '') {
         		$cript_pass = '';
-        		$rs = $this->ModelsExecuteMaster->ExecUpdate(array('password'=>$this->encryption->encrypt($password)),array('email'=> $param),'users');
+        		$rs = $this->ModelsExecuteMaster->ExecUpdate(array('password'=>$this->encryption->encrypt(substr($password, 0,6))),array('email'=> $param),'users');
 				if ($rs) {
 					$data['success'] = true;
 				}
@@ -256,7 +256,7 @@ class API_auth extends CI_Controller {
 
 	        $from = 'danim@siapaisa.com';
 	        $to = $param;
-	        $subject = 'test';
+	        $subject = '[No-Replay]Rahasia !!! Reset password Cerminjiwa Apps[No-Replay]';
 	        $message = '
 	        	<h3><center><b>CerminJiwa</b></center></h3><br>
 	            <p>
