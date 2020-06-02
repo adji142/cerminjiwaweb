@@ -100,7 +100,7 @@
 	            <div class="control-group">
 	              <label class="control-label">Refleksi</label>
 	              <div class="controls">
-	                <textarea class="span3" id="ref" name="ref" placeholder="Refleksi"></textarea>
+	                <textarea class="span3" id="ref" name="ref" placeholder="Refleksi" rows="5"></textarea>
 	              </div>
 	            </div>
 	            <div class="control-group">
