@@ -100,7 +100,7 @@ class C_post extends CI_Controller {
 			'AltVideo'			=> $altvideo,
 			'PostLink'			=> $PostLink,
 			'Folder'			=> $Folder,
-			'OflineVideo'		=> base_url().'localVideo/'.$judul.'.mp4'
+			'OflineVideo'		=> base_url().'localVideo/'.str_replace(' ', '', $judul).'.mp4'
 		);
 
 		if ($formtype == 'add') {
