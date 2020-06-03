@@ -90,7 +90,7 @@ class C_post extends CI_Controller {
 			'VideoLink'			=> $vidurl,
 			'title'				=> $judul,
 			'Description'		=> $Desc,
-			'Reflection'		=> $ref,
+			'Reflection'		=> str_replace("</li>", "</li><br>", $ref),
 			'Liked'				=> 0,
 			'Shared'			=> 0,
 			'LastUpdatedBy'		=> $NamaUser,
