@@ -88,7 +88,7 @@ class C_post extends CI_Controller {
 			'APILink'			=> $api,
 			'Thumb'				=> $thumburl,
 			'VideoLink'			=> $vidurl,
-			'title'				=> $judul,
+			'title'				=> $judul, 
 			'Description'		=> $Desc,
 			'Reflection'		=> str_replace("</li>", "</li><br>", $ref),
 			'Liked'				=> 0,
