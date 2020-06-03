@@ -64,7 +64,7 @@ class C_post extends CI_Controller {
 		// var_dump($uservid);
 		// $file 		= $this->request->getFile('uservid');
 			try {
-				unset($config);
+				unset($config); 
 				$date = date("ymd");
 		        $configVideo['upload_path'] = './localVideo';
 		        $configVideo['max_size'] = '60000';
