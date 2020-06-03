@@ -1,5 +1,5 @@
 ###################
-SISTEM PENUNJANG KEPUTUSAN NAIVE BEYES CREATED BY AISSYSTEM - aistrick.com
+CREATED BY AISSYSTEM - aistrick.com
 ###################
 
 *********************
@@ -14,14 +14,14 @@ cara installasi ke komputer lokal
 	proses clone
 		a. menggunakan git bash
 			- buka aplikasi git bash, klik kanan di document root -> git bash
-			- ketikan "git clone https://github.com/adji142/NaiveBeyes.git"
+			- ketikan "git clone https://github.com/adji142/downstore.git"
 		b. download manual
 			# via dekstop
-				- klik ke link https://github.com/adji142/NaiveBeyes
+				- klik ke link https://github.com/adji142/downstore
 				- click clone and download
 				- click download zip
 			# via mobile
-				- klik ke link https://github.com/adji142/NaiveBeyes
+				- klik ke link https://github.com/adji142/downstore
 				- scroll ke bagian bawah, click Dekstop version
 				- click clone and download
 				- click download zip
