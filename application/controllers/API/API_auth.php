@@ -242,9 +242,9 @@ class API_auth extends CI_Controller {
 
         	$config = array(
 			    'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
-			    'smtp_host' => 'mail.siapaisa.com', 
+			    'smtp_host' => 'mail.aistrick.com', 
 			    'smtp_port' => 465,
-			    'smtp_user' => 'danim@siapaisa.com',
+			    'smtp_user' => 'noreply@aistrick.com',
 			    'smtp_pass' => 'lagis3nt0s4',
 			    'smtp_crypto' => 'ssl', //can be 'ssl' or 'tls' for example
 			    'mailtype' => 'html', //plaintext 'text' mails or 'html'
@@ -254,7 +254,7 @@ class API_auth extends CI_Controller {
 			);
 	        $this->email->initialize($config);
 
-	        $from = 'danim@siapaisa.com';
+	        $from = 'noreply@aistrick.com';
 	        $to = $param;
 	        $subject = '[No-Replay]Rahasia !!! Reset password Cerminjiwa Apps[No-Replay]';
 	        $message = '
