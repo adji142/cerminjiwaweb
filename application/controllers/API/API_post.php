@@ -34,6 +34,7 @@ class API_post extends CI_Controller {
 		// credential
 		$DeviceID = $this->input->post('DeviceID');
 		$UserID = $this->input->post('UserID');
+		$kriteria = $this->input->post('kriteria');
 		$query = "SELECT
 						a.*,CASE WHEN b.id is not null then 1 else 0 end playlist,
 						COALESCE(b.DeviceID,'') DeviceID,COALESCE(b.KodeUser)UserID 
@@ -49,6 +50,9 @@ class API_post extends CI_Controller {
 						WHERE CONCAT(a.deviceID,a.KodeUser) = '".$DeviceID.$UserID."'
 					)b on a.id = b.id
 		 			where a.active = 1 and Source ='".$source."'";
+		if ($kriteria != '') {
+			$query .= "AND a.title like '%".$kriteria."%' ";
+		}
 
 		$rs = $this->db->query($query);
 
