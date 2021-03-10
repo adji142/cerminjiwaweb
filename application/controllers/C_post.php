@@ -168,4 +168,14 @@ class C_post extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+	public function GenerateJson()
+	{
+		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
+		$rsfull = $this->ModelsExecuteMaster->GetData('post');
+		$newJsonString = json_encode($rsfull->result());
+		file_put_contents('localVideo/post.json', $newJsonString);
+		$data['success'] = true;
+
+		echo json_encode($data);
+	}
 }

@@ -62,6 +62,16 @@ class API_post extends CI_Controller {
 
 		echo json_encode($rs->result());
 	}
+	public function GetAll()
+	{
+		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());
+		$SQL = "SELECT id,Thumb FROM post";
+		$rs = $this->db->query($SQL);
+		
+		$data['success'] = true;
+		$data['data'] = $rs->result();
+		echo json_encode($data);
+	}
 	public function ReadAbout()
 	{
 		$data = array('success' => false ,'message'=>array(),'count'=>0,'data'=>array());

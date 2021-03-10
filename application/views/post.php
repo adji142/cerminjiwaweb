@@ -13,7 +13,7 @@
 			<div class="row-fluid">
 				<div class="widget-box">
 					<div class="widget-title"> 
-			            <h5>Post</h5>
+			            <h5>Post {<a id="export">export</a>}</h5>
 			        </div>
 			        <div class="widget-content">
 			        	<!-- <button type="button" class="btn btn-mini btn-info" data-toggle="modal" data-target="#modal_">
@@ -168,6 +168,25 @@
 	          }
 	        });
         });
+        $('#export').click(function () {
+        	$.ajax({
+	          type: "post",
+	          url: "<?=base_url()?>c_post/GenerateJson",
+	          dataType: "json",
+	          success: function (response) {
+	          	if (response.success == true) {
+	          		Swal.fire({
+		              type: 'success',
+		              title: 'Horay..',
+		              text: 'Data Berhasil disimpan!',
+		              // footer: '<a href>Why do I have this issue?</a>'
+		            }).then((result)=>{
+		              location.reload();
+		            });
+	          	}
+	          }
+	        });
+        })
         $('#notref').change(function () {
         	// console.log();
         	if ($('#notref').prop('checked')) {

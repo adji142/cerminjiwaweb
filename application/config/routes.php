@@ -62,6 +62,7 @@ $route['APIAddPlaylist'] = 'API/API_post/AddPlaylist';
 $route['APIAbout'] = 'API/API_post/ReadAbout';
 $route['APILog'] = 'API/API_post/LogView';
 $route['APIVideo'] = 'API/API_post/GetVideoStream';
+$route['APIpostall'] = 'API/API_post/GetAll';
 
 // API AUTH
 $route['APIAUTHUname'] = 'API/API_auth/FindUserName';

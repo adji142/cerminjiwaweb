@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'siapaisa.com',
 	'username' => 'siapaisa_root',//aistrick_root //siapaisa_
 	'password' => 'lagis3nt0s4',//
 	'database' => 'siapaisa_cerminjiwa',//aistrick_cerminjiwa
